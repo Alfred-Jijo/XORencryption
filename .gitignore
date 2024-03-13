@@ -1,0 +1,6 @@
+dist-newstyle/
+out/
+
+*.exe
+CHANGELOG.md
+XORencryption.cabal
