@@ -1,6 +1,6 @@
 # Encryption Program in Haskell
 
-This is a simple encryption program written in Haskell that uses the XOR cipher to encrypt and decrypt files.
+This is a simple encryption program written in Haskell that uses the XOR cipher to encrypt and decrypt files. It also includes a feature to save the encryption/decryption key in a separate file for convenience.
 
 ## Building the Project
 
@@ -29,40 +29,56 @@ This command will compile the `Main.hs` file located in the `src` directory and 
 
 After building the project, you can run the generated executable to encrypt or decrypt files.
 
-### Encryption
+### Saving the Encryption/Decryption Key
 
-To encrypt a file, use the `-e` flag, followed by the encryption key, input file, and output file:
+Before encrypting or decrypting files, you can save the encryption/decryption key to a separate file using the `-k` flag:
 
 ```sh
-main.exe -e <key> <input-file> <output-file>
+main.exe -k <key> <key-file>
 ```
 
-Replace `<key>` with a number that you will need to remember for decryption, `<input-file>` with the path to the file you want to encrypt, and `<output-file>` with the desired path for the encrypted output file.
+Replace `<key>` with the desired encryption/decryption key (a number), and `<key-file>` with the path to the file where you want to save the key.
+
+### Encryption
+
+To encrypt a file, use the `-e` flag, followed by the encryption key, input file, output file, and the key file:
+
+```sh
+main.exe -e <key> <input-file> <output-file> <key-file>
+```
+
+Replace `<key>` with the encryption key (the same key used when saving the key file, if you saved it), `<input-file>` with the path to the file you want to encrypt, `<output-file>` with the desired path for the encrypted output file, and `<key-file>` with the path to the file where the encryption key is stored.
 
 ### Decryption
 
-To decrypt a file, use the `-d` flag, followed by the same encryption key used for encryption, the encrypted input file, and the desired output file for the decrypted content:
+To decrypt a file, use the `-d` flag, followed by the encrypted input file, the desired output file for the decrypted content, and the key file:
 
 ```sh
-main.exe -d <key> <input-file> <output-file>
+main.exe -d <input-file> <output-file> <key-file>
 ```
 
-Replace `<key>` with the same number used for encryption, `<input-file>` with the path to the encrypted file, and `<output-file>` with the desired path for the decrypted output file.
-
-**Note:** Remember the encryption key you use, as it is required for successful decryption.
+Replace `<input-file>` with the path to the encrypted file, `<output-file>` with the desired path for the decrypted output file, and `<key-file>` with the path to the file where the encryption key is stored.
 
 ## Example
+
+Save the encryption/decryption key to a file:
+
+```sh
+main.exe -k 42 key.txt
+```
 
 Encrypt a file:
 
 ```sh
-main.exe -e 42 plaintext.txt ciphertext.txt
+main.exe -e 42 plaintext.txt ciphertext.txt key.txt
 ```
 
 Decrypt the encrypted file:
 
 ```sh
-main.exe -d 42 ciphertext.txt plaintext.txt
+main.exe -d ciphertext.txt plaintext.txt key.txt
 ```
 
-In this example, the key `42` is used for both encryption and decryption.
+In this example, the key `42` is used for both encryption and decryption, and it is saved in the file `key.txt`.
+
+**Note:** Keep in mind that the XOR cipher is a simple and insecure encryption algorithm
