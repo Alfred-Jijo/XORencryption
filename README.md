@@ -81,4 +81,3 @@ main.exe -d ciphertext.txt plaintext.txt key.txt
 
 In this example, the key `42` is used for both encryption and decryption, and it is saved in the file `key.txt`.
 
-**Note:** The kay saving feature is yet to be succefull so the key will need to be specified when [en/de]crypting the file
